@@ -6,19 +6,56 @@
  * - Imprime el cálculo del área de un polígono de cada tipo.
  */
 
-const areaPol = (x, y, type) => {
-    switch (type) {
-        case "triángulo" : console.log((x*y)/2);
-        break;
-        case "cuadrado" : console.log(x*y);
-        break;        
-        case "rectángulo" : console.log(x*y);
-        break;
-        default : console.log("Polígono no soportado");
+const area = (Poligono) => {
+    Poligono.print();
+    return Poligono.area();
+}
+
+class Poligono {
+    constructor(tipo) {
+        this.tipo = tipo;
+    }
+
+    print(){
+    console.log(`El área del ${this.tipo} es igual a ${this.area()}`)
     }
 }
 
-areaPol(2, 3, "triángulo");
-areaPol(2, 5, "rectángulo");
-areaPol(3, 3, "cuadrado");
-areaPol(3, 3, "círculo");
+class Triangulo extends Poligono {
+    constructor(base, altura) {
+        super("Triángulo")
+        this.base = base
+        this.altura = altura
+    }
+
+    area(){
+        return (this.base*this.altura)/2
+    }
+}
+
+class Cuadrado extends Poligono {
+    constructor (lado) {
+        super("Cuadrado")
+        this.lado = lado
+    }
+
+    area() {
+        return (this.lado**2)
+    }
+}
+
+class Rectangulo extends Poligono {
+    constructor (base, altura) {
+        super("Rectángulo")
+        this.base = base
+        this.altura = altura
+    }
+
+    area() {
+        return (this.base * this.altura)
+    }
+}
+
+area(new Triangulo(2, 7))
+area(new Cuadrado(4))
+area(new Rectangulo(8, 3))
