@@ -5,18 +5,24 @@
 
 const esPrimo = (num) => {
     let numDivisores = 0;
+
+    if (num < 2) return false;
+
     for (let i = 1; i <= num; i++) {
         let numPrimo = num % i;
         if (numPrimo === 0) {
             numDivisores++;
         }
     }
+
     if (numDivisores === 2) {
-        console.log(num);
+        return true;
     }
 }
 
-for (let i = 0; i <= 100; i++) {
-    esPrimo(i);
+for (let i = 2; i <= 100; i++) { 
+    if (esPrimo(i)) {
+        console.log(i);
+    }
 }
 
